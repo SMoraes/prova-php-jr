@@ -1,5 +1,5 @@
 
-# Teste prático - Dev PHP Junior
+# Teste prático - Dev PHP Junior - Sergio Moraes
 
 ## Introdução
 
