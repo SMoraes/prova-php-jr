@@ -40,11 +40,8 @@
                                 <tr>
                                     <td colspan="11" style="text-align: center; font-size: 16px; color:red;">Não existe usuário cadastrado no sistema. <br> Favor Cadastrar um usuário!</td>
                                 </tr>
-
                                 <?php else :
-
                                 foreach ($usuarios as $usuario) :
-                                    //print_r($usuarios);die;
                                 ?>
                                     <tr>
                                         <td><?= $usuario->nome; ?></td>
@@ -54,7 +51,6 @@
                                         <td><?= $usuario->endereco; ?></td>
                                         <td><?= $usuario->estado; ?></td>
                                         <td><?= $usuario->role; ?></td>
-
                                         <td>
                                             <button type="button" data-toggle="modal" data-target=".bs-example-modal-static<?= $usuario->id_candidato ?>" data-toggle="tooltip" class="btn btn-primary btn-bordered"><i class="fa fa-pencil"></i></button>
                                         </td>
@@ -95,7 +91,6 @@
                                                         <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" value="<?= $usuario->nome; ?>" required />
                                                     </div>
                                                 </div><!-- form-group -->
-
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">CPF:</label>
                                                     <div class="col-sm-10">
@@ -108,34 +103,22 @@
                                                         <input type="text" name="dataNascimento" class="form-control date" placeholder="Data de nascimento" value="<?= $data = implode('/', array_reverse(explode('-', $usuario->dataNascimento))); ?>" required />
                                                     </div>
                                                 </div><!-- form-group -->
-
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Telefone:</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" name="telefone" class="form-control phone" placeholder="Telefone" value="<?= $usuario->telefone; ?>" required />
                                                     </div>
                                                 </div><!-- form-group -->
-
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Endereço:</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" name="endereco" class="form-control" placeholder="Endereço" value="<?= $usuario->endereco; ?>" required />
                                                     </div>
                                                 </div><!-- form-group -->
-
-
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Estado:</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" name="estado" class="form-control" placeholder="Estado" value="<?= $usuario->estado; ?>" required />
-                                                    </div>
-                                                </div><!-- form-group -->
-
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Role:</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" name="role" class="form-control" placeholder="Role" value="<?= $usuario->role; ?>" required />
                                                     </div>
                                                 </div><!-- form-group -->
                                                 <div class="form-group">
@@ -174,8 +157,17 @@
                                                         </select>
                                                     </div>
                                                 </div>
-
-
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Role:</label>
+                                                    <div class="col-sm-10">
+                                                        <select name="role" data-placeholder="Choose One" class="width300 select2-offscreen select2">
+                                                            <option value="<?= $usuario->role; ?>"><?= $usuario->role; ?></option>
+                                                            <option value="Programador">Programador</option>
+                                                            <option value="DBA">DBA</option>
+                                                            <option value="HelpDesk">Help Desk</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="panel-footer">
                                                     <button class="btn btn-success btn-lg" style="float: right">Editar</button>
                                                 </div><!-- panel-footer -->

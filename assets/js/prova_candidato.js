@@ -34,6 +34,18 @@ jQuery(document).ready(function() {
     });
 
 
+    // Botão para escolher o role do usuário 
+    jQuery(".radio_multi_role").click(function() {
+        var tipo = $(this).val();
+        if (tipo == 1) {
+            $(".role_permissao").slideDown("slow");
+        } else {
+            $(".role_permissao").slideUp("slow");
+            $(".roles_permissao_select").prop('selectedIndex', 0);
+        }
+    });
+
+
     function format(item) {
         return '<i class="fa ' + ((item.element[0].getAttribute('rel') === undefined) ? "" : item.element[0].getAttribute('rel')) + ' mr10"></i>' + item.text;
     }
@@ -107,4 +119,5 @@ jQuery(document).ready(function() {
             limpa_formulário_cep();
         }
     });
+
 });

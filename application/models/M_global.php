@@ -11,6 +11,25 @@ class M_global extends CI_Model
         parent::__construct();
     }
 
+    // MÉTODO PARA BUSCAR AS INFORMAÇÕES NA TABELA ROLE
+    public function getRolesPermissao($idRole, $where)
+    {
+        $this->db->select('*');
+        $this->db->from($where);
+
+        if ($idRole > 1) {
+            $this->db->where_in('id_roles');
+        }
+
+        $client = $this->db->get();
+        if ($client->num_rows() == 0) {
+            return [];
+        } else {
+            return $client->result();
+        }
+    }
+
+    // MÉTODO PARA BUSCAR UM CANDIDATO
     public function getQueryAll($table)
     {
         $this->db->select('*');
@@ -23,33 +42,7 @@ class M_global extends CI_Model
         }
     }
 
-    public function getQuery($table, $whereFlag, $valueFlag)
-    {
-        $where = array($whereFlag => $valueFlag);
-        $this->db->select('*');
-        $this->db->from($table);
-        $this->db->where($where);
-        $client = $this->db->get();
-        if ($client->num_rows() == 0) {
-            return [];
-        } else {
-            $result = $client->result();
-            return $result[0];
-        }
-    }
-
-    public function getQueryAllOrderBy($table, $colunOrder, $type = "ASC")
-    {
-        $this->db->select('*');
-        $this->db->from($table);
-        $this->db->order_by("$colunOrder $type");
-        $client = $this->db->get();
-        if ($client->num_rows() == 0) {
-            return [];
-        } else {
-            return $client->result();
-        }
-    }
+    // MÉTODO PARA ALTERAR UM USUÁRIO
     public function updateTableMysql($colunaBancoDadosWhere, $valorWhere, $tabela, $arrayData)
     {
         $this->db->where($colunaBancoDadosWhere, $valorWhere);
@@ -57,14 +50,14 @@ class M_global extends CI_Model
         return ($this->db->affected_rows() >= 1) ? true : false;
     }
 
-    // METODO PARA DELETAR NO BANCO DE DADOS
+    // MÉTODO PARA DELETAR UM USUÁRIO
     public function deleteTableMysql($table, $whereColum, $whereData)
     {
         $this->db->delete($table, array($whereColum => $whereData));
         return ($this->db->affected_rows() == 1) ? true : false;
     }
 
-    // METODO PARA INSERIR NO BANCO DE DADOS
+    // MÉTODO PARA INSERIR UM USUÁRIO
     public function insertTableMysql($table, $arrayData)
     {
         $this->db->insert($table, $arrayData);
